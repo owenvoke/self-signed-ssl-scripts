@@ -1,6 +1,6 @@
 # self-signed-ssl-scripts
 
-Generate Self-Signed SSL certificates for your web server.
+A set of scripts for generating self-signed SSL certificates.
 
 ## Usage
 
