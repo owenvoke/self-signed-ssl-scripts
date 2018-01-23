@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 if [ -z "$1" ]
 then
   echo "Please supply a subdomain to create a certificate for...";
