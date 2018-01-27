@@ -2,9 +2,9 @@
 
 if [ -z "$1" ]
 then
-  echo "Please supply a subdomain to create a certificate for...";
+  echo "Please supply a subdomain to create a certificate for..."
   echo "e.g. dev.local"
-  exit;
+  exit
 fi
 
 # Create a new private key if one doesnt exist, or use the xeisting one if it does
@@ -28,11 +28,11 @@ cp device.crt $DOMAIN/$DOMAIN.crt
 cp device.key $DOMAIN/device.key
 
 # remove temp file
-rm -f device.crt;
+rm -f device.crt
 
 echo 
 echo "###########################################################################"
-echo Done! 
+echo Done!
 echo "###########################################################################"
 echo "To use these files on your server, simply copy both $DOMAIN.csr and"
 echo "device.key to your webserver, and use like so (if Apache, for example)."
