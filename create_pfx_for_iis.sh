@@ -2,9 +2,9 @@
 
 if [ -z "$1" ]
 then
-  echo "Please supply a subdomain to create a certificate for...";
+  echo "Please supply a subdomain to create a certificate for..."
   echo "e.g. dev.local"
-  exit;
+  exit
 fi
 
 DOMAIN=$1
