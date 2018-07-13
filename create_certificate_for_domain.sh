@@ -22,12 +22,12 @@ openssl req -new -newkey rsa:2048 -sha256 -nodes $KEY_OPT device.key -subj "$SUB
 sed s/%%DOMAIN%%/$DOMAIN/g v3.ext > /tmp/__v3.ext
 openssl x509 -req -in device.csr -CA rootCA.pem -CAkey rootCA.key -CAcreateserial -out device.crt -days $NUM_OF_DAYS -sha256 -extfile /tmp/__v3.ext 
 
-# move output files to final filenames
+# Move output files to final filenames
 mv device.csr $DOMAIN/$DOMAIN.csr
 cp device.crt $DOMAIN/$DOMAIN.crt
 cp device.key $DOMAIN/device.key
 
-# remove temp file
+# Remove temp file
 rm -f device.crt
 
 echo 
