@@ -13,13 +13,13 @@ A set of scripts for generating self-signed SSL certificates.
 2. Generate your CRT, CSR and KEY files.
    
    ```bash
-   create-certificate-for-domain {{domain_name}}
+   ./create-certificate-for-domain {{domain_name}}
    ```
 
 3. Generate an IIS compatible PFX certificate from the CRT and KEY files.
    
    ```bash
-   create-pfx-for-iis {{domain_name}}
+   ./create-pfx-for-iis {{domain_name}}
    ```
 
 ## License
