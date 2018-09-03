@@ -6,20 +6,20 @@ A set of scripts for generating self-signed SSL certificates.
 
 1. Generate your CA certificate for signing the SSL certificates.
    
-   ```sh
-   create_root_cert_and_key.sh
+   ```bash
+   ./create-root-cert-and-key
    ```
 
 2. Generate your CRT, CSR and KEY files.
    
-   ```sh
-   create_certificate_for_domain.sh
+   ```bash
+   create-certificate-for-domain {{domain_name}}
    ```
 
 3. Generate an IIS compatible PFX certificate from the CRT and KEY files.
    
-   ```sh
-   create_pfx_for_iis.sh
+   ```bash
+   create-pfx-for-iis {{domain_name}}
    ```
 
 ## License
