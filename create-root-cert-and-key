@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
 
+# Generate a 2048-bit root RSA key
 openssl genrsa -out rootCA.key 2048
+
+# Generate a root CA certificate PEM
 openssl req -x509 -new -nodes -key rootCA.key -sha256 -days 1024 -out rootCA.pem
