@@ -28,6 +28,10 @@ To generate an IIS compatible PFX certificate from the CRT and KEY files:
 ./create-pfx-for-iis [domain-name]
 ```
 
+## Related Projects
+
+- [mkcert](https://github.com/FiloSottile/mkcert)
+
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
