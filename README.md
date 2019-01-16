@@ -6,7 +6,7 @@ A set of scripts for generating self-signed SSL certificates.
 
 ### Root Certificate Authority
 
-Generate your CA certificate for signing the SSL certificates.
+To generate a CA certificate for signing site-specific SSL certificates:
 
 ```bash
 ./create-root-cert-and-key
@@ -14,17 +14,19 @@ Generate your CA certificate for signing the SSL certificates.
 
 ### Site Certificates
 
-1. Generate your CRT, CSR and KEY files.
+To generate site-specific CRT, CSR and KEY files:
    
-   ```bash
-   ./create-certificate-for-domain {{domain_name}}
-   ```
+```bash
+./create-certificate-for-domain [domain-name]
+```
 
-1. Generate an IIS compatible PFX certificate from the CRT and KEY files.
+**Windows PFX**
+
+To generate an IIS compatible PFX certificate from the CRT and KEY files:
    
-   ```bash
-   ./create-pfx-for-iis {{domain_name}}
-   ```
+```bash
+./create-pfx-for-iis [domain-name]
+```
 
 ## License
 
