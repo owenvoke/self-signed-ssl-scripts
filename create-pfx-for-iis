@@ -8,4 +8,4 @@ then
 fi
 
 DOMAIN=$1
-openssl pkcs12 -export -out $DOMAIN/$DOMAIN.pfx -inkey $DOMAIN/device.key -in $DOMAIN/$DOMAIN.crt
+openssl pkcs12 -export -out certs/$DOMAIN/$DOMAIN.pfx -inkey certs/$DOMAIN/device.key -in certs/$DOMAIN/$DOMAIN.crt -passout pass:
