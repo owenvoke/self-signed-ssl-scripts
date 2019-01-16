@@ -1,5 +1,8 @@
 # self-signed-ssl-scripts
 
+[![Software License][ico-license]](LICENSE.md)
+
+
 A set of scripts for generating self-signed SSL certificates.
 
 ## Usage
@@ -35,3 +38,5 @@ To generate an IIS compatible PFX certificate from the CRT and KEY files:
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+
+[ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
