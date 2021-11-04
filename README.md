@@ -1,7 +1,6 @@
-# self-signed-ssl-scripts
+# Self-signed SSL/TLS Scripts
 
 [![Software License][ico-license]](LICENSE.md)
-
 
 A set of scripts for generating self-signed SSL certificates.
 
@@ -11,25 +10,27 @@ A set of scripts for generating self-signed SSL certificates.
 
 To generate a CA certificate for signing site-specific SSL certificates:
 
-```bash
+```shell
 ./create-root-cert-and-key
+```
+
+To renew the CA certificate:
+
+```shell
+./renew-root-cert
 ```
 
 ### Site Certificates
 
 To generate site-specific CRT, CSR and KEY files:
-   
-```bash
+
+```shell
 ./create-certificate-for-domain [domain-name]
 ```
 
 **Windows PFX**
 
-To generate an IIS compatible PFX certificate from the CRT and KEY files:
-   
-```bash
-./create-pfx-for-iis [domain-name]
-```
+Windows PFX files for IIS are generated as part of the `create-certificate-for-domain` script.
 
 ## Related Projects
 
