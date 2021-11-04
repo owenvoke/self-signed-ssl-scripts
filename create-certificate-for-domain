@@ -18,25 +18,30 @@ fi
 DOMAIN=$1
 mkdir -p certs/$DOMAIN
 SUBJECT="//C=CA/ST=None/L=NB/O=None/CN=$DOMAIN"
-NUM_OF_DAYS=999
+
+# Max 365 as there are limits in Chrome and Safari
+NUM_OF_DAYS=365
 
 # Generate the certificate signing request
 openssl req -new -newkey rsa:2048 -sha256 -nodes $KEY_OPT device.key -subj "$SUBJECT" -out device.csr
 sed s/%%DOMAIN%%/$DOMAIN/g v3.ext > /tmp/__v3.ext
 
 # Generate the certificate from the signing request (signed with the root CA certificate)
-openssl x509 -req -in device.csr -CA rootCA.pem -CAkey rootCA.key -CAcreateserial -out device.crt -days $NUM_OF_DAYS -sha256 -extfile /tmp/__v3.ext 
+openssl x509 -req -in device.csr -CA rootCA.pem -CAkey rootCA.key -CAcreateserial -out device.crt -days $NUM_OF_DAYS -sha256 -extfile /tmp/__v3.ext
 
 # Move output files to final filenames
 mv device.csr certs/$DOMAIN/$DOMAIN.csr
-mv device.crt certs/$DOMAIN/$DOMAIN.crt
+cp device.crt certs/$DOMAIN/$DOMAIN.crt
 cp device.key certs/$DOMAIN/device.key
+
+# Remove temp file
+rm -f device.crt
+
+openssl pkcs12 -export -out certs/$DOMAIN/$DOMAIN.pfx -inkey certs/$DOMAIN/device.key -in certs/$DOMAIN/$DOMAIN.crt -passout pass:
 
 echo 
 echo "###########################################################################"
 echo Done!
 echo "###########################################################################"
-echo "To use these files on your server, simply copy both $DOMAIN.csr and"
-echo "device.key to your webserver, and use like so (if Apache, for example)."
-echo "For IIS, run the 'create_pfx_for_iis.sh' to generate your PFX file."
+echo "For IIS, import the generated PFX file."
 echo 
