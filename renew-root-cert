@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+
+currentDate="$(date +%F_%H.%M)"
+
+backupPath="_backups/${currentDate}"
+mainRootCA="rootCA"
+
+if [ ! -d "${backupPath}" ]; then
+  mkdir -p "${backupPath}"
+fi
+
+mv "${mainRootCA}.pem" "${backupPath}/${mainRootCA}.pem"
+cp "${mainRootCA}.pfx" "${backupPath}/${mainRootCA}.pfx"
+cp "${mainRootCA}.key" "${backupPath}/${mainRootCA}.key"
+cp "${mainRootCA}.srl" "${backupPath}/${mainRootCA}.srl"
+cp "cacert.pem" "${backupPath}/cacert.pem"
+
+echo
+echo ================================
+echo   RENEWING ROOT CA CERTIFICATE
+echo ================================
+echo
+
+openssl x509 -x509toreq -in "${backupPath}/${mainRootCA}.pem" -signkey "${mainRootCA}.key" -out "${mainRootCA}.csr"
+
+openssl x509 -req -days 1830 -in "${mainRootCA}.csr" -signkey "${mainRootCA}.key" -out "${mainRootCA}.pem"
+
+echo
+echo ================================
+echo VERIFYING RENEWED CA CERTIFICATE
+echo ================================
+echo
+
+openssl verify -CAfile "${mainRootCA}.pem" -verbose "wildcard/wildcard.crt"
+
+echo
+echo ================================
+echo      GENERATING PFX FOR IIS
+echo ================================
+echo
+
+openssl pkcs12 -export -out "${mainRootCA}.pfx" -inkey "${mainRootCA}.key" -in "${mainRootCA}.pem" -passout pass: -nokeys
+
+echo 
+echo "###########################################################################"
+echo Done!
+echo "###########################################################################"
+echo
+echo "For IIS, import the generated PFX file."
+echo 
